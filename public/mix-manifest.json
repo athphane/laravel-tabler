@@ -1,6 +1,11 @@
 {
-    "/js/app.js": "/js/app.js?id=cf1b448f7a888686ae8b",
-    "/css/admin.css": "/css/admin.css?id=7d2f93df6497cf8cbd1d",
-    "/css/app.css": "/css/app.css?id=1d4c586e55ca547afb10",
-    "/js/admin.js": "/js/admin.js?id=b4d52792e966b78727cb"
+    "/js/app.js": "/js/app.js",
+    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/admin.css": "/css/admin.css",
+    "/css/app.css": "/css/app.css",
+    "/css/demo.css": "/css/demo.css",
+    "/css/tabler-flags.css": "/css/tabler-flags.css",
+    "/css/tabler-payments.css": "/css/tabler-payments.css",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/js/admin.js": "/js/admin.js"
 }

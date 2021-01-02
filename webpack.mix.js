@@ -17,13 +17,29 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('autoprefixer'),
 ])
 
+    // Bootstrap css
+    .sass('node_modules/bootstrap/scss/bootstrap.scss', 'public/css')
+
+    // Tabler SCSS
     .sass('resources/sass/admin/admin.scss', 'public/css')
 
+    // Tabler CSS
+    .copy('node_modules/@tabler/core/dist/css/demo.css', 'public/css')
+    .copy('node_modules/@tabler/core/dist/css/tabler-flags.min.css', 'public/css/tabler-flags.css')
+    .copy('node_modules/@tabler/core/dist/css/tabler-payments.min.css', 'public/css/tabler-payments.css')
+
+    // Tabler Fonts
+    // .copy('node_modules/@tabler/icons/iconfont/fonts', 'public/fonts')
+    // .copy('node_modules/@tabler/icons/iconfont/tabler-icons.css', 'public/css/tabler-icons.css')
+
+    // Boostrap JS
     .scripts([
-        'node_modules/@tabler/core/src/js/autosize.js',
-        'node_modules/@tabler/core/src/js/dropdown.js',
-        'node_modules/@tabler/core/src/js/input-mask.js',
-        'node_modules/@tabler/core/src/js/tabler.js',
+        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
+    ], 'public/js/bootstrap.bundle.min.js')
+
+    // Tabler JS
+    .scripts([
+        'node_modules/@tabler/core/dist/js/tabler.min.js',
     ], 'public/js/admin.js')
 
-    .version();
+    /*.version()*/;

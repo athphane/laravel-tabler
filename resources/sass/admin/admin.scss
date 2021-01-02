@@ -1,3 +1,18 @@
-@import 'variables';
+// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Inter');
 
-@import "~@tabler/core/src/scss/tabler-core";
+// Variables
+@import 'inc/variables';
+
+@import "~@tabler/core/src/scss/tabler";
+
+@import 'inc/vendors';
+
+//@import "~@tabler/icons/iconfont/tabler-icons";
+//@import 'inc/fonts';
+
+$google-font: 'Inter';
+@if $google-font {
+    $google-font-url: "https://fonts.googleapis.com/css2?family=" + str-replace($google-font, " ", "+") + ":wght@300;400;500;600;700&display=swap" !default;
+    @import url($google-font-url);
+}
