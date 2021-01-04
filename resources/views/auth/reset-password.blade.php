@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    {!! Form::open(['route' => 'password.update', 'autocomplete' => 'off']) !!}
+    {!! Form::open(['route' => 'admin.password.update', 'autocomplete' => 'off']) !!}
     <div class="card card-md">
         <div class="card-body">
             <h2 class="card-title text-center mb-4">{{ __('Reset your password') }}</h2>
@@ -23,7 +23,7 @@
                     <label class="form-label" for="email">
                         {{ __('Email Address') }}
                     </label>
-                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => true]) !!}
+                    {!! Form::email('email', old('email', Request::input('email')), ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
             <div class="form-group mb-2">

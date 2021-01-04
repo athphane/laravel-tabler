@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    {!! Form::open(['route' => 'password.confirm']) !!}
+    {!! Form::open(['route' => 'admin.password.confirm']) !!}
     <div class="card card-md">
         <div class="card-body text-center">
             <div class="mb-4">
@@ -37,8 +37,8 @@
     {!! Form::close() !!}
 
     <div class="text-center text-muted mt-3">
-        {!! Form::open(['route' => 'logout']) !!}
-        <a class="text-muted" href="{{ route('logout') }}"
+        {!! Form::open(['route' => 'admin.logout']) !!}
+        <a class="text-muted" href="{{ route('admin.logout') }}"
            onclick="event.preventDefault();
                                 this.closest('form').submit();">
             {{ __('Sign me out instead') }}

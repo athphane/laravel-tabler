@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    {!! Form::open(['route' => 'verification.send', 'autocomplete' => 'off']) !!}
+    {!! Form::open(['route' => 'admin.verification.send', 'autocomplete' => 'off']) !!}
     <div class="card card-md">
         <div class="card-body">
             <h2 class="card-title text-center mb-4">{{ __('Please verify your email.') }}</h2>
@@ -31,8 +31,8 @@
     {!! Form::close() !!}
 
     <div class="text-center text-muted mt-3">
-        {!! Form::open(['route' => 'logout']) !!}
-            <a class="text-muted" href="{{ route('logout') }}"
+        {!! Form::open(['route' => 'admin.logout']) !!}
+            <a class="text-muted" href="{{ route('admin.logout') }}"
                      onclick="event.preventDefault();
                                 this.closest('form').submit();">
                 {{ __('Sign me out instead') }}

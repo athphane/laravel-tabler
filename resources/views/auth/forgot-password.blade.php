@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    {!! Form::open(['route' => 'password.email', 'autocomplete' => 'off']) !!}
+    {!! Form::open(['route' => 'admin.password.email', 'autocomplete' => 'off']) !!}
     <div class="card card-md">
         <div class="card-body">
             <h2 class="card-title text-center mb-4">{{ __('Forgot your password?') }}</h2>
@@ -26,6 +26,6 @@
     </div>
     {!! Form::close() !!}
     <div class="text-center text-muted mt-3">
-        Forget it, <a href="{{ route('login') }}">send me back</a> to the sign in screen.
+        Forget it, <a href="{{ route('admin.login') }}">send me back</a> to the sign in screen.
     </div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    {!! Form::open(['route' => 'register', 'autocomplete' => 'off']) !!}
+    {!! Form::open(['route' => 'admin.register', 'autocomplete' => 'off']) !!}
     <div class="card card-md">
         <div class="card-body">
             <h2 class="card-title text-center mb-4">{{ __('Create new account') }}</h2>
@@ -48,6 +48,6 @@
     {!! Form::close() !!}
 
     <div class="text-center text-muted mt-3">
-        {{ __('Already have account?') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('Sign in') }}</a>
+        {{ __('Already have account?') }} <a href="{{ route('admin.login') }}" tabindex="-1">{{ __('Sign in') }}</a>
     </div>
 @endsection
