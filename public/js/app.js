@@ -3862,6 +3862,17 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/font-awesome/scss/font-awesome.scss":
+/*!**********************************************************!*\
+  !*** ./node_modules/font-awesome/scss/font-awesome.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -21354,15 +21365,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!******************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./node_modules/bootstrap/scss/bootstrap.scss ./resources/sass/admin/admin.scss ./resources/css/app.css ***!
-  \******************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./node_modules/bootstrap/scss/bootstrap.scss ./resources/sass/admin/admin.scss ./node_modules/font-awesome/scss/font-awesome.scss ./resources/css/app.css ***!
+  \*********************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\tabler\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\laragon\www\tabler\node_modules\bootstrap\scss\bootstrap.scss */"./node_modules/bootstrap/scss/bootstrap.scss");
 __webpack_require__(/*! C:\laragon\www\tabler\resources\sass\admin\admin.scss */"./resources/sass/admin/admin.scss");
+__webpack_require__(/*! C:\laragon\www\tabler\node_modules\font-awesome\scss\font-awesome.scss */"./node_modules/font-awesome/scss/font-awesome.scss");
 module.exports = __webpack_require__(/*! C:\laragon\www\tabler\resources\css\app.css */"./resources/css/app.css");
 
 

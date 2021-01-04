@@ -1,56 +1,72 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+@section('content')
+    {!! Form::open(['route' => 'login', 'autocomplete' => 'off']) !!}
+    <div class="card card-md">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">{{ __('Login to your account') }}</h2>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            @component('auth.components.session-status', [
+                'status' => session('status')
+            ])
+            @endcomponent
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            @component('auth.components.error-list', [
+                'errors' => $errors
+            ])
+            @endcomponent
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="mb-3">
+                {!! Form::label('email', __('Email Address'), ['class' => 'form-label']) !!}
+                {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+            <div class="mb-3">
+                <label class="form-label">
+                    {{ __('Password') }}
+                    <span class="form-label-description">
+                        <a href="{{ route('password.request') }}">{{ __('Forgot password?') }}</a>
+                    </span>
+                </label>
+                <div class="input-group input-group-flat">
+                    {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
+                </div>
             </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            <div class="mb-3">
+                <label class="form-check" for="remember_me">
+                    {!! Form::checkbox('remember_me', 1, null, ['class' => 'form-check-input']) !!}
+                    <span class="form-check-label">{{ __('Remember me on this device') }}</span>
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Login') }}
-                </x-button>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary w-100">{{ __('Sign in') }}</button>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+
+        <div class="hr-text">or</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="btn btn-white w-100">
+                        <i class="icon fa fa-github text-github"></i> {{ __('Login with Github') }}
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#" class="btn btn-white w-100">
+                        <i class="icon fa fa-twitter text-twitter"></i>
+                        {{ __('Login with Twitter') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+
+    <div class="text-center text-muted mt-3">
+        {{ __('Don\'t have account yet?') }} <a href="{{ route('register') }}" tabindex="-1">{{ __('Sign up') }}</a>
+    </div>
+@endsection

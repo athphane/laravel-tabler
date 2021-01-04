@@ -1,48 +1,51 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('content')
+    {!! Form::open(['route' => 'password.update', 'autocomplete' => 'off']) !!}
+    <div class="card card-md">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">{{ __('Reset your password') }}</h2>
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+            @component('auth.components.session-status', [
+                'status' => session('status')
+            ])
+            @endcomponent
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            @component('auth.components.error-list', [
+                'errors' => $errors
+            ])
+            @endcomponent
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            {{-- Password reset token --}}
+            {!! Form::hidden('token', $request->route('token')) !!}
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+            <div class="form-group mb-3 mt-4">
+                    <label class="form-label" for="email">
+                        {{ __('Email Address') }}
+                    </label>
+                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
+            <div class="form-group mb-2">
+                <label class="form-label">
+                    {{ __('Password') }}
+                </label>
+                {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
+            <div class="form-group mb-2">
+                <label class="form-label">
+                    {{ __('Confirm Password') }}
+                </label>
+                {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="icon fa fa-email"></i> {{ __('Reset Password') }}
+                </button>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+    {!! Form::close() !!}
+@endsection

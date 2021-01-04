@@ -42,4 +42,6 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
         'node_modules/@tabler/core/dist/js/tabler.min.js',
     ], 'public/js/admin.js')
 
-    /*.version()*/;
+    .sass('node_modules/font-awesome/scss/font-awesome.scss', 'public/css')
+
+    .version();

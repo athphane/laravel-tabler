@@ -1,11 +1,12 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/bootstrap.css": "/css/bootstrap.css",
-    "/css/admin.css": "/css/admin.css",
-    "/css/app.css": "/css/app.css",
-    "/css/demo.css": "/css/demo.css",
-    "/css/tabler-flags.css": "/css/tabler-flags.css",
-    "/css/tabler-payments.css": "/css/tabler-payments.css",
-    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
-    "/js/admin.js": "/js/admin.js"
+    "/js/app.js": "/js/app.js?id=440c50f9b0b4f1719a21",
+    "/css/bootstrap.css": "/css/bootstrap.css?id=cda3b245a0ff28a6cfe1",
+    "/css/admin.css": "/css/admin.css?id=94dde02f7da18c15b57c",
+    "/css/font-awesome.css": "/css/font-awesome.css?id=c3ac919c8841f1598a6b",
+    "/css/app.css": "/css/app.css?id=1d4c586e55ca547afb10",
+    "/css/demo.css": "/css/demo.css?id=e29baf1fde9c4c5a5d69",
+    "/css/tabler-flags.css": "/css/tabler-flags.css?id=fb81b350106bbbcbeaa7",
+    "/css/tabler-payments.css": "/css/tabler-payments.css?id=5691f3934dfb214a602b",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js?id=a3b0a9f767ac0014b919",
+    "/js/admin.js": "/js/admin.js?id=373b6b53f724d65136b5"
 }

@@ -1,59 +1,53 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('content')
+    {!! Form::open(['route' => 'register', 'autocomplete' => 'off']) !!}
+    <div class="card card-md">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">{{ __('Create new account') }}</h2>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+            @component('auth.components.error-list', [
+                'errors' => $errors
+            ])
+            @endcomponent
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="form-group mb-3">
+                {!! Form::label('name', __('Name')) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'John Appleseed']) !!}
             </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <div class="form-group mb-3">
+                {!! Form::label('email', __('Email Address'), ['class' => 'form-label']) !!}
+                {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => true, 'placeholder' => 'john.appleseed@gmail.com']) !!}
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+            <div class="form-group mb-3">
+                <label class="form-label">{{ __('Password') }}</label>
+                {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+            <div class="form-group mb-2">
+                <label class="form-label">
+                    {{ __('Confirm Password') }}
+                </label>
+                {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => true]) !!}
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+            <div class="form-group mb-3">
+                <label class="form-check" for="remember_me">
+                    {!! Form::checkbox('agree_tos', 1, null, ['class' => 'form-check-input']) !!}
+                    <span class="form-check-label">I agree to the <a href="#" tabindex="-1">terms and conditions</a>.</span>
+                </label>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary w-100">{{ __('Create new account') }}</button>
+            </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
+
+    <div class="text-center text-muted mt-3">
+        {{ __('Already have account?') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('Sign in') }}</a>
+    </div>
+@endsection

@@ -36,7 +36,13 @@
                     <a href="#" class="dropdown-item">Feedback</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">Settings</a>
-                    <a href="#" class="dropdown-item">Logout</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button class="dropdown-item">
+                            {{ __('Logout') }}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

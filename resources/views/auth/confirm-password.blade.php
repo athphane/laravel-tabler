@@ -1,36 +1,48 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@section('content')
+    {!! Form::open(['route' => 'password.confirm']) !!}
+    <div class="card card-md">
+        <div class="card-body text-center">
+            <div class="mb-4">
+                <h2 class="card-title">{{ __('Account Locked') }}</h2>
+                <p class="text-muted">{{ __('Please enter your password to continue') }}</p>
+            </div>
+
+            <div class="mb-4">
+                <span class="avatar avatar-xl mb-3" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                <h3>{{ Auth::user()->name }}</h3>
+            </div>
+
+            @component('auth.components.error-list', [
+                'errors' => $errors
+            ])
+            @endcomponent
+
+            <div class="form-group mb-4">
+                {!! Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Password...']) !!}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <rect x="5" y="11" width="14" height="10" rx="2"/>
+                    <circle cx="12" cy="16" r="1"/>
+                    <path d="M8 11v-5a4 4 0 0 1 8 0"/>
+                </svg> {{ __('Unlock') }}
+            </button>
         </div>
+    </div>
+    {!! Form::close() !!}
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
-
-            <!-- Password -->
-            <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    <div class="text-center text-muted mt-3">
+        {!! Form::open(['route' => 'logout']) !!}
+        <a class="text-muted" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                                this.closest('form').submit();">
+            {{ __('Sign me out instead') }}
+        </a>
+        {!! Form::close() !!}
+    </div>
+@endsection

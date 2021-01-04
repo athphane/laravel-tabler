@@ -18,12 +18,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?Inter=Nunito:wght@400;500;600;700&display=swap">
 
     <!-- CSS files -->
-    <link href="{{ asset('css/tabler-flags.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/tabler-payments.css') }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/tabler-flags.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/tabler-payments.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/font-awesome.css')) }}" rel="stylesheet"/>
 
     @stack('vendor-styles')
 
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/admin.css')) }}" rel="stylesheet"/>
 
     @stack('styles')
 </head>
