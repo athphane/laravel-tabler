@@ -65,7 +65,7 @@ Route::group([
     Route::group([
         'middleware' => ['verified:admin.verification.notice']
     ], function () {
-        Route::get('/', [\App\Http\Controllers\DashboardController::class, '__invoke'])->name('dashboard');
+        Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     });
 });
 

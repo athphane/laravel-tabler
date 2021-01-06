@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,7 +17,7 @@ class DashboardController extends Controller
      * @param Request $request
      * @return Application|Factory|View|Response
      */
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         return view('admin.dashboard');
     }

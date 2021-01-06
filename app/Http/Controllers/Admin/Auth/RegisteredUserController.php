@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+
 use App\Http\Controllers\Controller;
+
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
