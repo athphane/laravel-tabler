@@ -13,9 +13,8 @@
                     <div class="page-header d-print-none">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="page-title">
-                                    Empty page
-                                </h2>
+                                <h2 class="page-title">@yield('page-title')</h2>
+                                <small>@yield('page-subtitle')</small>
                             </div>
                         </div>
                     </div>
