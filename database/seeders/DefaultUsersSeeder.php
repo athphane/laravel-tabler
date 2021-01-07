@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class DefaultUsersSeeder extends Seeder
 {
@@ -29,7 +29,7 @@ class DefaultUsersSeeder extends Seeder
             }
 
             $user->email = $user_data['email'];
-            $user->password = $user_data['password'];
+            $user->password = Hash::make($user_data['password']);
 
             $user->remember_token = Str::random(10);
 
