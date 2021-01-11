@@ -19,6 +19,13 @@
                         </div>
                     </div>
 
+                    @foreach(session()->get('alerts',[]) as $alert)
+                        <div class="alert alert-{{ $alert['type'] }}" role="alert">
+                            <h4 class="alert-title">{{ $alert['title'] }}</h4>
+                            <div class="text-muted">{{ $alert['text'] }}</div>
+                        </div>
+                    @endforeach
+
                     @section('content')
                     @show
                 </div>

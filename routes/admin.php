@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BulkSmsController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
@@ -65,7 +67,9 @@ Route::group([
     Route::group([
         'middleware' => ['verified:admin.verification.notice']
     ], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/bulk-sms', [BulkSmsController::class, 'index'])->name('bulk-sms');
+        Route::post('/bulk-sms', [BulkSmsController::class, 'sendSms'])->name('bulk-sms.send');
     });
 });
 

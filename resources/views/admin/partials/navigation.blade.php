@@ -1,6 +1,11 @@
 @php
     $menu_items = [
         [
+            'name' => __('Bulk SMS'),
+            'icon' => 'fa-cog',
+            'controller' => 'BulkSms',
+        ],
+        [
             'name' => __('Setting'),
             'icon' => 'fa-cog',
             'items' => [
@@ -68,7 +73,7 @@
                             @if($children->isNotEmpty())
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" >
                             @else
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}" >
+                            <a class="nav-link" href="{{ $url }}" >
                             @endif
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="icon fa {{ $menu_item['icon'] }}"></i>
