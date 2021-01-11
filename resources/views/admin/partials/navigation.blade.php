@@ -1,12 +1,11 @@
 @php
     $menu_items = [
         [
-            'name' => __('Someting'),
-            'icon' => 'fa-home',
+            'name' => __('Setting'),
+            'icon' => 'fa-cog',
             'items' => [
-                ['url' => route('admin.dashboard'), 'name' => __('Responses'), 'permission' => 'view_feedback'],
-                ['url' => route('admin.dashboard'), 'name' => __('Feedback Form'), 'permission' => 'view_feedback_questions'],
-                ['url' => route('admin.dashboard'), 'name' => __('Stats'), 'permission' => 'view_feedback'],
+                ['name' => __('Users'), 'icon' => 'fa-user', 'permission' => 'view_feedback', 'url' => route('admin.dashboard')],
+                ['name' => __('Roles'), 'icon' => 'fa-user-lock', 'permission' => 'view_feedback', 'url' => route('admin.dashboard')],
             ]
         ],
     ];
@@ -74,8 +73,8 @@
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <i class="icon fa {{ $menu_item['icon'] }}"></i>
                                 </span>
-                                    <span class="nav-link-title">
-                                  {{ $menu_item['name'] }}
+                                <span class="nav-link-title">
+                                    {{ $menu_item['name'] }}
                                 </span>
                             </a>
                             @if($children->isNotEmpty())
@@ -84,7 +83,7 @@
                                         @foreach($children->chunk(5) as $children_chunk)
                                             <div class="dropdown-menu-column">
                                                 @foreach($children_chunk as $sub_item)
-                                                    <?php
+                                                    @php
                                                     $controller = $sub_item['controller'] ?? '';
                                                     $sub_url = $sub_item['url'] ?? '';
                                                     $sub_active_class = 'dropdown-item';
@@ -99,7 +98,7 @@
                                                     if ($sub_active) {
                                                         $sub_active_class .= ' active';
                                                     }
-                                                    ?>
+                                                    @endphp
 
                                                     <a class="{{ $sub_active_class }}" href="{{ $sub_url }}" >
                                                         {{ $sub_item['name'] }}

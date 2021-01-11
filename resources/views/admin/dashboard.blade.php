@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Dashboard')
+
 @section('page-title')
     {{ __('Dashboard') }}
 @endsection

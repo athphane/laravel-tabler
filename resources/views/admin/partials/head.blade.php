@@ -6,8 +6,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <title>{{ config('app.name', 'Laravel') }}
         @hasSection('title')
             | @yield('title', 'Admin Dashboard')
@@ -15,7 +13,7 @@
     </title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?Inter=Nunito:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap">
 
     <!-- CSS files -->
     <link href="{{ asset(mix('css/tabler-flags.css')) }}" rel="stylesheet"/>
