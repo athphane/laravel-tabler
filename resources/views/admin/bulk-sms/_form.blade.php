@@ -3,7 +3,6 @@
         @component('admin.components.form.text-input', [
             'name' => 'sender',
             'title' => __('Send As'),
-            'placeholder' => auth()->user()->name,
         ])
         @endcomponent
 

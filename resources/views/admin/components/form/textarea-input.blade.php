@@ -15,4 +15,5 @@
         'required' => isset($required),
         'disabled' => !empty($disabled),
     ]) !!}
+    @include('errors._list', ['error' => $errors->get($name)])
 </div>
