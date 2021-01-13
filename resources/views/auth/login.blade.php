@@ -25,7 +25,7 @@
                 <label class="form-label">
                     {{ __('Password') }}
                     <span class="form-label-description">
-                        <a href="{{ route('admin.password.request') }}">{{ __('Forgot password?') }}</a>
+                        <a tabindex="-1" href="{{ route('admin.password.request') }}">{{ __('Forgot password?') }}</a>
                     </span>
                 </label>
                 <div class="input-group input-group-flat">
