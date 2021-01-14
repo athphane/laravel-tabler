@@ -19,6 +19,9 @@
     <link href="{{ asset(mix('css/tabler-flags.css')) }}" rel="stylesheet"/>
     <link href="{{ asset(mix('css/tabler-payments.css')) }}" rel="stylesheet"/>
     <link href="{{ asset(mix('css/font-awesome.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/select2.min.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/select2.min.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/select2-bootstrap4.min.css')) }}" rel="stylesheet"/>
 
     @stack('vendor-styles')
 

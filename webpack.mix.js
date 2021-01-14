@@ -30,7 +30,7 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
 
     // Tabler Fonts
     // .copy('node_modules/@tabler/icons/iconfont/fonts', 'public/fonts')
-    // .copy('node_modules/@tabler/icons/iconfont/tabler-icons.css', 'public/css/tabler-icons.css')
+    .copy('node_modules/@tabler/icons/tabler-sprite.svg', 'public/fonts/tabler-sprite.svg')
 
     // Boostrap JS
     .scripts([
@@ -40,8 +40,15 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     // Tabler JS
     .scripts([
         'node_modules/@tabler/core/dist/js/tabler.min.js',
-    ], 'public/js/admin.js')
+    ], 'public/js/tabler.js')
 
     .sass('node_modules/font-awesome/scss/font-awesome.scss', 'public/css')
 
+    .js('resources/js/admin.js', 'public/js')
+    .copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js')
+
+    .copy('node_modules/select2/dist/js/select2.min.js', 'public/js/select2.min.js')
+    .copy('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
+
+    .copy('node_modules/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css', 'public/css/select2-bootstrap4.min.css')
     .version();

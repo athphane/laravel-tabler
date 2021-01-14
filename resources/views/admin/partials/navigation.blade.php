@@ -1,6 +1,11 @@
 @php
     $menu_items = [
         [
+            'name' => __('Users'),
+            'icon' => 'fa-users',
+            'controller' => 'Users',
+        ],
+        [
             'name' => __('Bulk SMS'),
             'icon' => 'fa-cog',
             'controller' => 'BulkSms',

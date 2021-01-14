@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -30,5 +31,17 @@ class Controller extends BaseController
 
         // flash the new data
         session()->flash('alerts', $values);
+    }
+
+    /**
+     * Get per page
+     *
+     * @param Request $request
+     * @param int $default
+     * @return int
+     */
+    protected function getPerPage(Request $request, $default = 0): int
+    {
+        return abs($request->input('per_page', $default ?: 20));
     }
 }

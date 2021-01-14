@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BulkSmsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
@@ -70,6 +71,9 @@ Route::group([
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/bulk-sms', [BulkSmsController::class, 'index'])->name('bulk-sms');
         Route::post('/bulk-sms', [BulkSmsController::class, 'sendSms'])->name('bulk-sms.send');
+
+        Route::match(['PUT', 'PATCH'], 'users', [UsersController::class, 'bulk'])->name('users.bulk');
+        Route::resource('users', UsersController::class);
     });
 });
 

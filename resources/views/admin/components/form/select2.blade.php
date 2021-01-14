@@ -7,19 +7,16 @@
     $attribs = $attribs ?? [];
 
     $attribs = array_merge([
-        'class' => add_error_class($errors->has($name)),
-        'placeholder' => $placeholder,
+        'class' => add_error_class($errors->has($name)) . ' select2-basic',
+        'data-placeholder' => $placeholder,
         'required' => !empty($required),
-        'disabled' => !empty($disabled),
+        'data-disabled' => !empty($disabled),
     ], $attribs);
-
-    $value = isset($value) ? $value : old($name);
-
 @endphp
 
 <div class="mb-3">
     {!! Form::label($name, $title, ['class' => 'form-label']) !!}
-    {!! Form::text($name, $value, $attribs) !!}
+    {!! Form::select($name, $values, $selected_value, $attribs) !!}
 
     @if(! $hide_errors_list)
         @include('errors._list', ['error' => $errors->get($name)])

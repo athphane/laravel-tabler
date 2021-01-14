@@ -1,6 +1,6 @@
 @php
     $name = isset($name) ? $name : 'name';
-    $title = isset($title) ? $title : \Illuminate\Support\Str::title($name);
+    $title = isset($title) ? $title : \Illuminate\Support\Str::title(str_replace('_', ' ', $name));
     $placeholder = isset($placeholder) ? $placeholder : $title;
     $rows = isset($rows) ? $rows : 4;
 

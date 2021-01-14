@@ -23088,3 +23088,16 @@ span.flatpickr-weekday {
   content: "\EDEB";
 }
 
+.fa {
+  padding-right: 4px;
+}
+
+.table.fa-chevron,
+.markdown > table.fa-chevron,
+.table.fa-chevron-up,
+.markdown > table.fa-chevron-up,
+.table.fa-chevron-down,
+.markdown > table.fa-chevron-down {
+  cursor: pointer;
+}
+

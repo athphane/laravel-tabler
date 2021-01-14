@@ -1,6 +1,3 @@
-// Fonts
-//@import url('https://fonts.googleapis.com/css?family=Inter');
-
 // Variables
 @import 'inc/variables';
 
@@ -8,11 +5,22 @@
 
 @import 'inc/vendors';
 
-//@import "~@tabler/icons/iconfont/tabler-icons";
+@import "~@tabler/icons/iconfont/tabler-icons";
 //@import 'inc/fonts';
 
 $google-font: 'Inter';
 @if $google-font {
     $google-font-url: "https://fonts.googleapis.com/css2?family=" + str-replace($google-font, " ", "+") + ":wght@300;400;500;600;700&display=swap" !default;
     @import url($google-font-url);
+}
+
+@import 'inc/font-awesome';
+
+
+.table {
+    &.fa-chevron,
+    &.fa-chevron-up,
+    &.fa-chevron-down {
+        cursor: pointer;
+    }
 }
