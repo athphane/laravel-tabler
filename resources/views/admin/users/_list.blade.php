@@ -23,24 +23,14 @@
                 User
             </td>
             <td>
-                <div class="btn-list flex-nowrap">
-                    <a href="#" class="btn btn-white">
-                        Edit
+                <div class="btn-group">
+                    <a href="{{ route('admin.users.edit', $user) }}"><i class="fa fa-pencil fa-lg text-warning mx-1"></i></a>
+                    <a href="{{ route('admin.users.show', $user) }}"><i class="fa fa-eye fa-lg text-success mx-1"></i></a>
+                    <a href="#" class="delete-link"
+                       data-request-url="{{ route('admin.users.destroy', $user) }}"
+                       data-redirect-url="{{ Request::fullUrl() }}">
+                        <i class="fa fa-trash fa-lg text-danger mx-1"></i>
                     </a>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
-                                data-bs-toggle="dropdown">
-                            Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="#">
-                                Action
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                Another action
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </td>
         @endslot

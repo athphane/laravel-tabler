@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\Traits\HasOrderBys;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -75,11 +79,11 @@ class UsersController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return Response
+     * @return RedirectResponse
      */
-    public function show(User $user): Response
+    public function show(User $user): RedirectResponse
     {
-        //
+        return redirect()->action([self::class, 'edit'], $user);
     }
 
     /**
@@ -90,7 +94,7 @@ class UsersController extends Controller
      */
     public function edit(User $user): Response
     {
-        //
+        dd($user);
     }
 
     /**
@@ -109,11 +113,30 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return Response
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
      */
-    public function destroy(User $user): Response
+    public function destroy(User $user)
     {
-        //
+        // Check if given user is currently logged in
+        if ($user->id == Auth::user()->id) {
+            if (request()->expectsJson()) {
+                return response()->json("Hey! You can't delete yourself.. That's a big no no.", 500);
+            }
+        }
+
+        if (! $user->delete()) {
+            if (request()->expectsJson()) {
+                return response()->json(false, 500);
+            }
+            abort(500);
+        }
+
+        if (request()->expectsJson()) {
+            return response()->json(true);
+        }
+
+        return redirect()->action([self::class, 'index']);
     }
 
     public function bulk(Request $request)

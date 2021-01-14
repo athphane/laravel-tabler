@@ -22,6 +22,7 @@
     <link href="{{ asset(mix('css/select2.min.css')) }}" rel="stylesheet"/>
     <link href="{{ asset(mix('css/select2.min.css')) }}" rel="stylesheet"/>
     <link href="{{ asset(mix('css/select2-bootstrap4.min.css')) }}" rel="stylesheet"/>
+    <link href="{{ asset(mix('css/sweetalert2.min.css')) }}" rel="stylesheet"/>
 
     @stack('vendor-styles')
 

@@ -93,6 +93,22 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/**
+ * Redirects the page
+ */
+window.redirectPage = function (redirect_url) {
+  if (redirect_url) {
+    if (redirect_url.indexOf('#') === 0) {
+      window.location.hash = redirect_url;
+      window.location.reload();
+    } else {
+      window.location.replace(redirect_url);
+    }
+  } else {
+    window.location.reload();
+  }
+};
+
 $(document).ready(function () {
   console.log('Bruh.'); // check all boxes when select all clicked
 
@@ -136,6 +152,40 @@ $(document).ready(function () {
       parent_form.find('[name="order"]').val(order);
       parent_form.submit();
     }
+  }); // delete record
+
+  $('.delete-link').click(function (e) {
+    e.preventDefault();
+    var request_url = $(this).data('request-url');
+    var redirect_url = $(this).data('redirect-url');
+    swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to undo this delete operation!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function (result) {
+      if (result.value) {
+        axios["delete"](request_url).then(function (response) {
+          swal.fire({
+            title: 'Deleted!',
+            text: 'The record has been deleted',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+          }).then(function () {
+            redirectPage(redirect_url);
+          });
+        })["catch"](function (error) {
+          var message = error.response.data;
+          swal.fire({
+            title: 'Error!',
+            text: message || 'An error occurred while deleting',
+            icon: 'error'
+          });
+        });
+      }
+    });
   });
 });
 

@@ -51,4 +51,9 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     .copy('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
 
     .copy('node_modules/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css', 'public/css/select2-bootstrap4.min.css')
+
+
+    .copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css/sweetalert2.min.css')
+    .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert2.min.js')
+    .copy('node_modules/axios/dist/axios.min.js', 'public/js/axios.min.js')
     .version();

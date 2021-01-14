@@ -13,8 +13,8 @@
         </div>
         <div class="col-lg-6 col-md-4">
             <div class="button-group">
-                <button class="btn btn-ghost-danger btn--icon-text btn--raised" type="submit">
-                    <i class="zmdi zmdi-check"></i> {{ __('Apply') }}
+                <button class="btn btn-danger" type="submit">
+                    <i class="fa fa-check"></i> {{ __('Apply') }}
                 </button>
             </div>
         </div>
