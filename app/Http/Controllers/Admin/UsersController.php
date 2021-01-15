@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\Traits\HasOrderBys;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\Traits\HasOrderBys;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,10 +15,17 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
 {
     use HasOrderBys;
+
+    public function __construct()
+    {
+        $this->authorizeResource(User::class);
+    }
 
     /**
      * Init Order bys
@@ -139,15 +147,41 @@ class UsersController extends Controller
         return redirect()->action([self::class, 'index']);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws Exception
+     */
     public function bulk(Request $request)
     {
+        $this->validate($request, [
+            'action' => 'required|in:delete',
+            'users' => 'required|array',
+            'users.*' => 'exists:users,id',
+        ]);
+
+        $action = $request->input('action');
         $ids = $request->input('users', []);
 
-        // Implement bulk actions here
+        switch ($action) {
+            case 'delete':
+                //make sure allowed to delete
+//                $this->authorize('delete_courses');
 
-        $this->flashSuccessMessage(__('Modified :count :plural.', [
-            'count' => count($ids), 'plural' => pluralize('user', count($ids))
-        ]));
+                User::query()->whereIn('id', $ids)
+                    ->get()
+                    ->each(function (User $user) {
+                        $user->delete();
+                    });
+
+                $this->flashSuccessMessage(__('Deleted :count :plural.', [
+                    'count' => count($ids), 'plural' => pluralize('user', count($ids))
+                ]));
+
+                break;
+        }
 
         return redirect()->back();
     }

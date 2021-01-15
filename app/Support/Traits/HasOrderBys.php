@@ -7,7 +7,7 @@
  * Time: 16:28
  */
 
-namespace App\Helpers\Traits;
+namespace App\Support\Traits;
 
 use Illuminate\Http\Request;
 

@@ -93,7 +93,8 @@ $(document).ready(function () {
                         );
                     })
                     .catch(function (error) {
-                        var message = error.response.data;
+                        console.log(error.response.data);
+                        var message = error.response.data.message;
                         swal.fire({
                             title: 'Error!',
                             text:  message || 'An error occurred while deleting',
