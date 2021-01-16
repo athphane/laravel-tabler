@@ -2,4 +2,7 @@
 
 @section('title', 'Users')
 @section('page-title', __('Users'))
-@section('page-subtitle', $title)
+
+@if(isset($title))
+    @section('page-subtitle', $title)
+@endif

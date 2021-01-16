@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="table-responsive">
+    <div class="table-responsive mb-0">
         @if(empty($no_bulk))
             {{ $bulk_form_open ?? '' }}
             <div class="p-3">
@@ -9,7 +9,7 @@
         <table class="table table-hover table-vcenter table-mobile-md card-table" data-form-sortable="#{{ $filter_id ?? 'filter' }}">
             <thead>
             <tr>
-                <th>
+                <th class="w-1">
                     <input id="{{ ($model ?? '').'-select-all' }}" class="form-check-input"
                            data-all="{{ $model ?? '' }}" value="1" type="checkbox"/>
                 </th>

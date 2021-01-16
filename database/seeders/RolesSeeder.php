@@ -10,6 +10,11 @@ class RolesSeeder extends Seeder
 {
     protected $data = [
         'super_admin' => ['description' => 'Super Admin', 'permissions' => [
+            'index_roles',
+            'view_roles',
+            'edit_roles',
+            'delete_roles',
+
             // users permissions
             'index_users',
             'view_users',

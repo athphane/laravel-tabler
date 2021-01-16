@@ -8,6 +8,13 @@ use Illuminate\Database\Seeder;
 class PermissionsSeeder extends Seeder
 {
     protected $data = [
+        'roles' => [
+            'index_roles' => 'View roles module',
+            'view_roles' => 'View roles',
+            'edit_roles' => 'Edit roles',
+            'delete_roles' => 'Delete roles',
+        ],
+
         'users' => [
             'index_users' => 'View users module',
             'view_users' => 'View users',

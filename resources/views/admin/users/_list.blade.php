@@ -15,12 +15,10 @@
                     </div>
                 </div>
             </td>
-            <td data-label="Title">
-                <div>VP Sales</div>
-                <div class="text-muted">Business Development</div>
-            </td>
             <td class="text-muted" data-label="Role">
-                User
+                @if($role = $user->roles->first())
+                    {!! $role->admin_link !!}
+                @endif
             </td>
             <td>
                 <div class="btn-group">

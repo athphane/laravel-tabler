@@ -7,7 +7,7 @@ namespace App\Support\AdminModel;
 //use App\Http\Controllers\Admin\LogsController;
 use Carbon\Carbon;
 
-class IsAdminModel
+trait IsAdminModel
 {
     /**
      * Get admin user attribute
@@ -53,20 +53,17 @@ class IsAdminModel
      *
      * @return string
      */
-    public function getLoggingNameAttribute(): ?string
+    public function getLoggingNameAttribute(): string
     {
-        return null;
         return $this->admin_link_name;
     }
 
     /**
      * Get the log url
-     *
-     * @return string
      */
-    public function getLogUrlAttribute(): ?string
+    public function getLogUrlAttribute(): string
     {
-        return null;
+        return '1';
         /*return add_query_arg([
             'subject_type' => $this->getMorphClass(),
             'subject_id' => $this->id,
@@ -78,9 +75,9 @@ class IsAdminModel
      *
      * @return string
      */
-    public function getCauserLogUrlAttribute(): ?string
+    public function getCauserLogUrlAttribute(): string
     {
-        return null;
+        return 'null';
     }
 
     /**

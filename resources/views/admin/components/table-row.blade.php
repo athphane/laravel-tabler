@@ -1,7 +1,7 @@
 @php
     $row_id = $row_id ?? ($model ?? '').'-'.($model_id ?? rand()).'-row';
 @endphp
-<tr id="{{ $row_id }}">
+<tr id="{{ $row_id }}" class="table-row">
     <td>
         @php
             $checkbox_id = $row_id.'-check';

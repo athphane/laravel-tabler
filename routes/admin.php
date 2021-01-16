@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BulkSmsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
@@ -74,6 +75,9 @@ Route::group([
 
         Route::match(['PUT', 'PATCH'], 'users', [UsersController::class, 'bulk'])->name('users.bulk');
         Route::resource('users', UsersController::class);
+
+        Route::match(['PUT', 'PATCH'], 'roles', [RolesController::class, 'bulk'])->name('roles.bulk');
+        Route::resource('roles', RolesController::class);
     });
 });
 

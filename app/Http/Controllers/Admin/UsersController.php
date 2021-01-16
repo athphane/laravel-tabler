@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use App\Support\Traits\HasOrderBys;
 use Exception;
@@ -15,7 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
@@ -32,7 +33,7 @@ class UsersController extends Controller
      */
     protected static function initOrderbys()
     {
-        static::$orderbys = ['name', 'email', 'role'];
+        static::$orderbys = ['name'];
     }
 
     /**
@@ -98,11 +99,11 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return Response
+     * @return Application|Factory|View|Response
      */
-    public function edit(User $user): Response
+    public function edit(User $user)
     {
-        dd($user);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -110,11 +111,25 @@ class UsersController extends Controller
      *
      * @param Request $request
      * @param User $user
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, User $user): Response
+    public function update(UsersRequest $request, User $user): RedirectResponse
     {
-        //
+        $user->fill($request->all());
+
+        if ($request->has('password')) {
+            if ($password = $request->input('password')) {
+                $user->password = Hash::make($password);
+            }
+        }
+
+        if ($role = $request->input('roles')) {
+            $user->syncRoles($role);
+        }
+
+        $user->save();
+
+        return redirect()->action([self::class, 'edit'], $user);
     }
 
     /**

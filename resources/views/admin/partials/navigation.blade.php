@@ -6,6 +6,11 @@
             'controller' => 'Users',
         ],
         [
+            'name' => __('Roles'),
+            'icon' => 'fa-users',
+            'controller' => 'Roles',
+        ],
+        [
             'name' => __('Bulk SMS'),
             'icon' => 'fa-cog',
             'controller' => 'BulkSms',

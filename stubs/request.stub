@@ -11,9 +11,9 @@ class {{ class }} extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,16 @@ class {{ class }} extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name' => 'string|min:5|max:255',
         ];
+
+        if (${{ routeParam }} = $this->route('{{ routeParam }}')) {
+            //
+        } else {
+            $rules['name'] .= '|required';
+        }
+
+        return $rules;
     }
 }

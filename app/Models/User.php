@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Roles\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,7 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password',
     ];
 
     /**
@@ -69,5 +69,15 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return Str::upper($initials);
+    }
+
+    /**
+     * Get role attribute
+     *
+     * @return Role
+     */
+    public function getRoleAttribute(): Role
+    {
+        return $this->roles->first();
     }
 }

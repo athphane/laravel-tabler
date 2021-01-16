@@ -15,7 +15,7 @@
         "alpinejs": "^2.7.3",
         "autoprefixer": "^9.8.6",
         "axios": "^0.19",
-        "bootstrap": "twbs/bootstrap#561c0d8cde549c24ba7c451a6d0742089290b3a7",
+        "bootstrap": "^5.0.0-alpha1",
         "bootstrap-datepicker": "^1.9.0",
         "bootstrap-sass": "^3.4.1",
         "chart.js": "^2.9.4",

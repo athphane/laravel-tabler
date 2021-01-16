@@ -52,3 +52,18 @@ if (! function_exists('pluralize')) {
         return Str::plural($word, $count > 1 ? 2 : 1);
     }
 }
+
+if (! function_exists('pascal_to_snake')) {
+    /**
+     * Get plural form of the given word based on count provided
+     * The point is the hide away the $count > 1 logic.
+     *
+     * @param string $string
+     * @return string
+     * @throws \Jawira\CaseConverter\CaseConverterException
+     */
+    function pascal_to_snake(string $string): string
+    {
+        return (new \Jawira\CaseConverter\Convert($string))->fromPascal()->toSnake();
+    }
+}
