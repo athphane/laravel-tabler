@@ -10,7 +10,7 @@
                 <div class="d-flex py-1 align-items-center">
                     <span class="avatar me-2">{{ $user->initials }}</span>
                     <div class="flex-fill">
-                        <div class="font-weight-medium">{{ $user->name }}</div>
+                        <div class="font-weight-medium">{!! $user->admin_link !!}</div>
                         <div class="text-muted"><a href="#" class="text-reset">{{ $user->email }}</a></div>
                     </div>
                 </div>

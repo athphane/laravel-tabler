@@ -24,5 +24,9 @@
 @endsection
 
 @section('content')
-    {{ __('Successfully Blade-fied') }}
+    <div class="row">
+        <div class="col-md-3">
+            @include('admin.dashboard._profile-card')
+        </div>
+    </div>
 @endsection

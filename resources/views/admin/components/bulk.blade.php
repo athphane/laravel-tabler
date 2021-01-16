@@ -1,5 +1,5 @@
 @unless( empty($actions) )
-    <div class="row">
+    <div class="row bulk">
         <div class="col-lg-3 col-md-8">
             <div class="form-group">
                 {!! Form::select('action', ['' => ''] + $actions, '', [

@@ -16,6 +16,9 @@
                                 <h2 class="page-title">@yield('page-title')</h2>
                                 <small>@yield('page-subtitle')</small>
                             </div>
+                            <div class="col-auto ms-auto">
+                                @yield('model-actions')
+                            </div>
                         </div>
                     </div>
 

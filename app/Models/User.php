@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Support\AdminModel\AdminModel;
+use App\Support\AdminModel\IsAdminModel;
 use App\Support\Roles\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,9 +12,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, AdminModel
 {
     use HasFactory, Notifiable, HasRoles;
+    use IsAdminModel;
 
     /**
      * The attributes that are mass assignable.
@@ -52,6 +55,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('name', 'like', '%' . $search . '%')
             ->orWhere('email', 'like', '%' . $search . '%');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAdminUrlAttribute(): string
+    {
+        return route('admin.users.edit', $this);
     }
 
     /**

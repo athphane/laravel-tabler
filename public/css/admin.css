@@ -23088,7 +23088,11 @@ span.flatpickr-weekday {
   content: "\EDEB";
 }
 
-.fa {
+table .fa {
+  padding-right: 4px;
+}
+
+.bulk .fa {
   padding-right: 4px;
 }
 
@@ -23098,6 +23102,15 @@ span.flatpickr-weekday {
 .markdown > table.fa-chevron-up,
 .table.fa-chevron-down,
 .markdown > table.fa-chevron-down {
+  cursor: pointer;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.sort-field {
   cursor: pointer;
 }
 

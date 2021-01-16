@@ -2,4 +2,11 @@
 
 @section('title', 'Roles')
 @section('page-title', __('Roles'))
-@section('page-subtitle', $title)
+
+@if(isset($title))
+    @section('page-subtitle', $title)
+@endif
+
+@section('model-actions')
+    @include('admin.roles._actions')
+@endsection

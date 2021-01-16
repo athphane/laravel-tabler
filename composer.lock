@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3300847c505c743aa6a6588ff6eb54f",
+    "content-hash": "87f793fd5939d9b044b6bfc25ec21a5c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,50 @@
                 "stack"
             ],
             "time": "2020-10-29T16:03:21+00:00"
+        },
+        {
+            "name": "athphane/programmer-quotes",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/athphane/laravel-programmer-quotes.git",
+                "reference": "1ce0684942f32a6c13cdfbd260d37732711e2722"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/athphane/laravel-programmer-quotes/zipball/1ce0684942f32a6c13cdfbd260d37732711e2722",
+                "reference": "1ce0684942f32a6c13cdfbd260d37732711e2722",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/collections": "^8.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Athphane\\ProgrammerQuotes\\ProgrammerQuotesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Athphane\\ProgrammerQuotes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Athfan Khaleel",
+                    "email": "athphane@gmail.com"
+                }
+            ],
+            "description": "Programmer quotes as a packages",
+            "support": {
+                "issues": "https://github.com/athphane/laravel-programmer-quotes/issues",
+                "source": "https://github.com/athphane/laravel-programmer-quotes/tree/v1.0"
+            },
+            "time": "2020-09-25T09:46:42+00:00"
         },
         {
             "name": "brick/math",

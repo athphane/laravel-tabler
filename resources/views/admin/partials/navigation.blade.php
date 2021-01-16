@@ -4,23 +4,26 @@
             'name' => __('Users'),
             'icon' => 'fa-users',
             'controller' => 'Users',
+            'permission' => 'index_users'
         ],
         [
             'name' => __('Roles'),
-            'icon' => 'fa-users',
+            'icon' => 'fa-lock',
             'controller' => 'Roles',
+            'permission' => 'index_roles'
         ],
         [
             'name' => __('Bulk SMS'),
-            'icon' => 'fa-cog',
+            'icon' => 'fa-comments',
             'controller' => 'BulkSms',
+            'permission' => 'send_sms'
         ],
         [
             'name' => __('Setting'),
             'icon' => 'fa-cog',
             'items' => [
-                ['name' => __('Users'), 'icon' => 'fa-user', 'permission' => 'view_feedback', 'url' => route('admin.dashboard')],
-                ['name' => __('Roles'), 'icon' => 'fa-user-lock', 'permission' => 'view_feedback', 'url' => route('admin.dashboard')],
+                ['name' => __('Users'), 'icon' => 'fa-users', 'permission' => 'index_users', 'url' => route('admin.users.index')],
+                ['name' => __('Roles'), 'icon' => 'fa-user-lock', 'permission' => 'index_roles', 'url' => route('admin.roles.index')],
             ]
         ],
     ];
@@ -49,12 +52,15 @@
                             $children = collect($menu_item['items'] ?? []);
 
                             // get the permissions
-                            //$permissions = $menu_item['permission'] ?? null;
-                            //if (empty($permissions)) {
-                            //    $permissions = $children->pluck('permission')->all();
-                            //}
-                            //
-                            //
+                            $permissions = $menu_item['permission'] ?? null;
+
+                            if (empty($permissions)) {
+                                $permissions = $children->pluck('permission')->all();
+                            }
+                        @endphp
+
+                        @if(auth()->user()->hasAnyPermission($permissions))
+                        @php
                             $active = false;
                             $li_class = '';
                             $controller = $menu_item['controller'] ?? '';
@@ -98,6 +104,7 @@
                                         @foreach($children->chunk(5) as $children_chunk)
                                             <div class="dropdown-menu-column">
                                                 @foreach($children_chunk as $sub_item)
+                                                    @if(auth()->user()->hasAnyPermission($sub_item['permission']))
                                                     @php
                                                     $controller = $sub_item['controller'] ?? '';
                                                     $sub_url = $sub_item['url'] ?? '';
@@ -118,6 +125,7 @@
                                                     <a class="{{ $sub_active_class }}" href="{{ $sub_url }}" >
                                                         {{ $sub_item['name'] }}
                                                     </a>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         @endforeach
@@ -125,6 +133,7 @@
                                 </div>
                             @endif
                         </li>
+                        @endif
                     @endforeach
                 </ul>
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">

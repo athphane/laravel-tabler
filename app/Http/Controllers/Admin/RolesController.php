@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Support\Roles\Role;
 use App\Support\Traits\HasOrderBys;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -14,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Models\Permission;
 
 class RolesController extends Controller
 {
@@ -62,22 +64,39 @@ class RolesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View|Response
      */
-    public function create(): Response
+    public function create()
     {
-        //
+        $permissions = Permission::orderBy('model', 'ASC')
+            ->orderBy('description', 'ASC')
+            ->get();
+
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request): Response
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $role = new \App\Support\Roles\Role($request->only(['name', 'description']));
+        $role->guard_name = 'web_admin';
+        $role->save();
+
+        //add the permissions
+        $permissions = $request->input('permissions', []);
+        $role->permissions()->sync($permissions);
+
+        // Reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
+        $this->flashSuccessMessage();
+
+        return redirect()->action([RolesController::class, 'edit'], $role);
     }
 
     /**
@@ -95,11 +114,15 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Role $role
-     * @return Response
+     * @return Application|Factory|View|Response
      */
-    public function edit(Role $role): Response
+    public function edit(Role $role)
     {
-        dd($role);
+        $permissions = Permission::orderBy('model', 'ASC')
+            ->orderBy('description', 'ASC')
+            ->get();
+
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -107,11 +130,27 @@ class RolesController extends Controller
      *
      * @param Request $request
      * @param Role $role
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Role $role): Response
+    public function update(Request $request, Role $role): RedirectResponse
     {
-        //
+        $role->fill($request->only(['name', 'description']));
+
+        $permissions = $request->input('permissions', []);
+        $role->syncPermissionIds($permissions);
+
+        // Reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
+        $role->save();
+
+        $this->flashSuccessMessage();
+
+        if ( $request->user()->hasRole($role) && !$role->hasPermissionTo('edit_roles') ) {
+            return redirect()->to( url('/') );
+        } else {
+            return redirect()->action([self::class, 'edit'], $role);
+        }
     }
 
     /**
@@ -141,7 +180,6 @@ class RolesController extends Controller
     /**
      * @param Request $request
      * @return RedirectResponse
-     * @throws AuthorizationException
      * @throws ValidationException
      * @throws Exception
      */

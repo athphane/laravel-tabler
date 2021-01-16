@@ -4,8 +4,10 @@
 namespace App\Support\Roles;
 
 
+use App\Events\RolePermissionsUpdated;
 use App\Support\AdminModel\AdminModel;
 use App\Support\AdminModel\IsAdminModel;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role as BaseRole;
 
 class Role extends BaseRole implements AdminModel
@@ -23,5 +25,15 @@ class Role extends BaseRole implements AdminModel
     public function getAdminLinkNameAttribute(): string
     {
         return $this->description;
+    }
+
+    /**
+     * Sync permissions
+     *
+     * @param array $permissions
+     */
+    public function syncPermissionIds($permissions)
+    {
+        $this->permissions()->sync($permissions);
     }
 }

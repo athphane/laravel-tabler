@@ -12,8 +12,8 @@
     @endslot
 
     @slot('titles')
-        <th data-sort-field="name">{{ __('Name') }} <i class="fa fa-{{ add_sort_class('name') }}"></i></th>
-        <th data-sort-field="description">{{ __('Description') }} <i class="fa fa-{{ add_sort_class('description') }}"></i></th>
+        <th class="sort-field" data-sort-field="name">{{ __('Name') }} <i class="fa fa-{{ add_sort_class('name') }}"></i></th>
+        <th class="sort-field" data-sort-field="description">{{ __('Description') }} <i class="fa fa-{{ add_sort_class('description') }}"></i></th>
         <th class="w-1"></th>
     @endslot
 

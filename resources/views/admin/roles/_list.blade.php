@@ -7,7 +7,7 @@
 
         @slot('columns')
             <td data-label="Name" class="font-weight-medium">
-                {{ $role->name }}
+                {!! $role->admin_link !!}
             </td>
             <td data-label="Description">
                 {{ $role->description }}

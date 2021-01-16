@@ -20,6 +20,6 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $title = __('Dashboard');
-        return view('admin.dashboard', compact('title'));
+        return view('admin.dashboard.dashboard', compact('title'));
     }
 }

@@ -67,3 +67,30 @@ if (! function_exists('pascal_to_snake')) {
         return (new \Jawira\CaseConverter\Convert($string))->fromPascal()->toSnake();
     }
 }
+
+if (! function_exists('timeOfDay')) {
+    /**
+     * Get plural form of the given word based on count provided
+     * The point is the hide away the $count > 1 logic.
+     *
+     * @param string $string
+     * @return string
+     * @throws \Jawira\CaseConverter\CaseConverterException
+     */
+    function timeOfDay(): string
+    {
+        $date = now();
+
+        $hour = $date->format('H');
+
+        if ($hour < 12 && $hour >= 4) {
+            return 'morning';
+        }
+
+        if ($hour > 12 && $hour < 17) {
+            return 'afternoon';
+        }
+
+        return 'evening';
+    }
+}

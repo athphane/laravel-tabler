@@ -66,22 +66,32 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View|Response
      */
-    public function create(): Response
+    public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request): Response
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $user = new User($request->all());
+
+        $user->password = $request->input('password');
+
+        $user->save();
+
+        $user->syncRoles($request->input('roles'));
+
+        $this->flashSuccessMessage();
+
+        return redirect()->action([self::class, 'edit'], $user);
     }
 
     /**
@@ -123,11 +133,13 @@ class UsersController extends Controller
             }
         }
 
+        $user->save();
+
         if ($role = $request->input('roles')) {
             $user->syncRoles($role);
         }
 
-        $user->save();
+        $this->flashSuccessMessage();
 
         return redirect()->action([self::class, 'edit'], $user);
     }

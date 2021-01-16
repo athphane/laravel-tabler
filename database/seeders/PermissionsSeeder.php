@@ -8,6 +8,10 @@ use Illuminate\Database\Seeder;
 class PermissionsSeeder extends Seeder
 {
     protected $data = [
+        'sms' => [
+            'send_sms' => 'Send SMS',
+        ],
+
         'roles' => [
             'index_roles' => 'View roles module',
             'view_roles' => 'View roles',
