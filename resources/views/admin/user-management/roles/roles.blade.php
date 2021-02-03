@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.user-management.user-management')
 
 @section('title', 'Roles')
 @section('page-title', __('Roles'))
@@ -8,5 +8,5 @@
 @endif
 
 @section('model-actions')
-    @include('admin.roles._actions')
+    @include('admin.user-management.roles._actions')
 @endsection

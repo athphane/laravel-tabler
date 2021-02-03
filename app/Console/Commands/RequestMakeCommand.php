@@ -44,6 +44,7 @@ class RequestMakeCommand extends BaseRequestMakeCommand
      */
     protected function getRouteParam()
     {
-        return Str::singular(pascal_to_snake(Str::replaceFirst('Request', '', $this->getNameInput())));
+        return Str::singular(pascal_to_snake(
+            Str::replaceFirst('Request', '', $this->getNameInput())));
     }
 }

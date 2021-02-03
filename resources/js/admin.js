@@ -15,8 +15,6 @@ window.redirectPage = function (redirect_url) {
 };
 
 $(document).ready(function () {
-    console.log('Bruh.');
-
     // check all boxes when select all clicked
     $('input[type="checkbox"][data-all]').on('change', function (e) {
         e.preventDefault();

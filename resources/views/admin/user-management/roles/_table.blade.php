@@ -8,7 +8,7 @@
     @endslot
 
     @slot('bulk_form')
-        @include('admin.roles._bulk')
+        @include('admin.user-management.roles._bulk')
     @endslot
 
     @slot('titles')
@@ -23,7 +23,7 @@
                 <td colspan="4">{{ __('No matching roles found.') }}</td>
             </tr>
         @else
-            @include('admin.roles._list')
+            @include('admin.user-management.roles._list')
         @endif
     @endslot
 

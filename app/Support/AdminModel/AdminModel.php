@@ -20,9 +20,8 @@ interface AdminModel
 
     /**
      * Get the name to be displayed on the admin link
-     * @return string
      */
-    public function getAdminLinkNameAttribute(): string;
+    public function getAdminLinkNameAttribute();
 
     /**
      * Get can view admin link

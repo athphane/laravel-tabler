@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersRequest;
 use App\Models\User;
+use App\Support\Roles\Role;
 use App\Support\Traits\HasOrderBys;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -18,6 +19,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use phpDocumentor\Reflection\Types\Collection;
 
 class UsersController extends Controller
 {
@@ -60,7 +62,7 @@ class UsersController extends Controller
         $users = $users->paginate($per_page)
             ->appends($request->except('page'));
 
-        return view('admin.users.index', compact('users', 'title'));
+        return view('admin.user-management.users.index', compact('users', 'title'));
     }
 
     /**
@@ -70,7 +72,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.user-management.users.create');
     }
 
     /**
@@ -113,7 +115,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        return view('admin.user-management.users.edit', compact('user'));
     }
 
     /**
@@ -211,5 +213,25 @@ class UsersController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function userManagement()
+    {
+        $stats = [
+            [
+                'title' => __(':count Users', ['count' => User::count()]),
+                'icon' => 'fa-users',
+                'color' => 'success'
+            ],
+            [
+                'title' => __(':count Roles', ['count' => Role::count()]),
+                'icon' => 'fa-lock',
+                'color' => 'danger'
+            ]
+        ];
+
+        $stats = collect($stats);
+
+        return view('admin.user-management.show', compact('stats'));
     }
 }

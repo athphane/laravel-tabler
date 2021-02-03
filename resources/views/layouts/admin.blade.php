@@ -13,7 +13,7 @@
                     <div class="page-header d-print-none">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="page-title">@yield('page-title')</h2>
+                                <h2 \class="page-title">@yield('page-title')</h2>
                                 <small>@yield('page-subtitle')</small>
                             </div>
                             <div class="col-auto ms-auto">
@@ -29,8 +29,22 @@
                         </div>
                     @endforeach
 
-                    @section('content')
-                    @show
+                    @hasSection('aside')
+                        <div class="row">
+                            <div class="col-md-2">
+                                @section('aside')
+                                @show
+                            </div>
+                            <div class="col-md-10">
+                                @section('content')
+                                @show
+                            </div>
+                        </div>
+                    @else
+                        @section('content')
+                        @show
+                    @endif
+
                 </div>
                 @include('admin.partials.copyright')
             </section>

@@ -1,12 +1,12 @@
-@extends('admin.roles.roles')
+@extends('admin.user-management.roles.roles')
 
 @section('content')
     @if($roles->isNotEmpty() || \App\Models\User::exists())
         {!! Form::open(['route' =>'admin.roles.index', 'method' => 'GET', 'id' => 'filter']) !!}
-        @include('admin.roles._filter')
+        @include('admin.user-management.roles._filter')
         {!! Form::close() !!}
 
-        @include('admin.roles._table')
+        @include('admin.user-management.roles._table')
     @else
         @component('admin.components.no-items', [
             'icon' => 'fa-roles',

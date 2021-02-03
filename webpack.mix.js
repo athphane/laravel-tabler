@@ -37,10 +37,14 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
         'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
     ], 'public/js/bootstrap.bundle.min.js')
 
+    .scripts([
+        'node_modules/bootstrap/dist/js/bootstrap.min.js'
+    ], 'public/js/bootstrap.min.js')
+
     // Tabler JS
     .scripts([
         'node_modules/@tabler/core/dist/js/tabler.min.js',
-    ], 'public/js/tabler.js')
+    ], 'public/js/tabler.min.js')
 
     .sass('node_modules/font-awesome/scss/font-awesome.scss', 'public/css')
 
@@ -56,4 +60,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     .copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css/sweetalert2.min.css')
     .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert2.min.js')
     .copy('node_modules/axios/dist/axios.min.js', 'public/js/axios.min.js')
+    .copy('node_modules/popper.js/dist/popper.min.js', 'public/js/popper.min.js')
     .version();

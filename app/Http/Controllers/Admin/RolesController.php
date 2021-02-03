@@ -58,7 +58,7 @@ class RolesController extends Controller
         $roles = $roles->paginate($per_page)
             ->appends($request->except('page'));
 
-        return view('admin.roles.index', compact('roles', 'title'));
+        return view('admin.user-management.roles.index', compact('roles', 'title'));
     }
 
     /**
@@ -72,7 +72,7 @@ class RolesController extends Controller
             ->orderBy('description', 'ASC')
             ->get();
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.user-management.roles.create', compact('permissions'));
     }
 
     /**
@@ -122,7 +122,7 @@ class RolesController extends Controller
             ->orderBy('description', 'ASC')
             ->get();
 
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        return view('admin.user-management.roles.edit', compact('role', 'permissions'));
     }
 
     /**

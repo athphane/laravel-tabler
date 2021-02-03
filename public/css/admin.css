@@ -23092,7 +23092,8 @@ table .fa {
   padding-right: 4px;
 }
 
-.bulk .fa {
+.bulk .fa,
+a .fa {
   padding-right: 4px;
 }
 

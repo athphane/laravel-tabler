@@ -4,7 +4,7 @@
 @section('page-title', 'Create Role')
 
 @section('content')
-    {!! Form::open(['files' => true, 'route' => 'admin.roles.store']) !!}
-    @include('admin.roles._form')
+    {!! Form::open(['route' => 'admin.roles.store']) !!}
+    @include('admin.user-management.roles._form')
     {!! Form::close() !!}
 @endsection

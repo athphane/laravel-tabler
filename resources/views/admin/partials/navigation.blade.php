@@ -1,16 +1,10 @@
 @php
     $menu_items = [
         [
-            'name' => __('Users'),
+            'name' => __('User Management'),
             'icon' => 'fa-users',
-            'controller' => 'Users',
-            'permission' => 'index_users'
-        ],
-        [
-            'name' => __('Roles'),
-            'icon' => 'fa-lock',
-            'controller' => 'Roles',
-            'permission' => 'index_roles'
+            'url' => route('admin.users.user-management'),
+            'permission' => ['index_users', 'index_roles']
         ],
         [
             'name' => __('Bulk SMS'),

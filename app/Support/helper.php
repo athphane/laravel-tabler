@@ -94,3 +94,17 @@ if (! function_exists('timeOfDay')) {
         return 'evening';
     }
 }
+
+if (! function_exists('slug_to_title')) {
+    /**
+     * Convert slug to title case
+     *
+     * @param $slug
+     * @param string $separator
+     * @return string
+     */
+    function slug_to_title($slug, $separator = '_'): string
+    {
+        return Str::title(str_replace($separator, ' ', $slug));
+    }
+}

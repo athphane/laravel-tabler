@@ -74,6 +74,7 @@ Route::group([
         Route::post('/bulk-sms', [BulkSmsController::class, 'sendSms'])->name('bulk-sms.send');
 
         Route::match(['PUT', 'PATCH'], 'users', [UsersController::class, 'bulk'])->name('users.bulk');
+        Route::get('user-management', [UsersController::class, 'userManagement'])->name('users.user-management');
         Route::resource('users', UsersController::class);
 
         Route::match(['PUT', 'PATCH'], 'roles', [RolesController::class, 'bulk'])->name('roles.bulk');

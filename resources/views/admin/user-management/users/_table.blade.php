@@ -8,7 +8,7 @@
     @endslot
 
     @slot('bulk_form')
-        @include('admin.users._bulk')
+        @include('admin.user-management.users._bulk')
     @endslot
 
     @slot('titles')
@@ -23,7 +23,7 @@
                 <td colspan="4">{{ __('No matching users found.') }}</td>
             </tr>
         @else
-            @include('admin.users._list')
+            @include('admin.user-management.users._list')
         @endif
     @endslot
 
